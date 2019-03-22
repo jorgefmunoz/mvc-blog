@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: site-head">
+  <title>Login</title>
+</head>
+
+<body>
+
+	<header th:replace="layout :: site-header" />
+	
+	<h1>Register New User</h1>
+	
+	<form action="#" th:action="@{/users/register}" th:object="${user}" method="post">
+		
+		<div><label for="username">Username:</label></div>
+		<input id="username" type="text" th:field="*{username}" />
+		<span class="formError" th:if="${#fields.hasErrors('username')}"
+		                                th:errors="*{username}">Invalid username</span>
+		                                
+		<div><label for="fullName" th:value="*{fullName}">Full name:</label></div>
+		<input id="fullName" type="text" th:field="*{fullName}" />
+		<span class="formError" th:if="${#fields.hasErrors('fullName')}"
+		                                th:errors="*{fullName}">Invalid name</span>
+		
+		<div><label for="password" th:value="*{password}">Password:</label></div>
+		<input id="password" type="password" th:field="*{password}" />
+		<span class="formError" th:if="${#fields.hasErrors('password')}"
+		                                th:errors="*{password}">Invalid password</span>
+		                     
+		<div><label for="matchingPassword" th:value="*{matchingPassword}">Confirm password:</label></div>
+		<input id="matchingPassword" type="password" th:field="*{matchingPassword}" />
+		
+		<div><input type="submit" value="Register"/></div>
+	</form>
+	
+	<a href="login.html" th:href="@{/users/login}">[Go to Login]</a>
+	
+	<footer th:replace="layout :: site-footer" />
+
+</body>
+
+</html>
